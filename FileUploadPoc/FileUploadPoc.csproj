@@ -134,6 +134,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
+    <Content Include="FileUpload\FileUploadPoc.ascx" />
     <Content Include="FileUpload\FileUpload.asmx" />
     <Content Include="FileUpload\fileupload.js" />
     <Content Include="FileUpload\FileUploadControl.ascx" />
@@ -225,6 +226,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FileUpload\FileUploadPoc.ascx.cs">
+      <DependentUpon>FileUploadPoc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FileUpload\FileUploadPoc.ascx.designer.cs">
+      <DependentUpon>FileUploadPoc.ascx</DependentUpon>
     </Compile>
     <Compile Include="FileUpload\FileUpload.asmx.cs">
       <DependentUpon>FileUpload.asmx</DependentUpon>

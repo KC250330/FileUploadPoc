@@ -1,39 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 
 namespace FileUploadPoc.FileUpload
 {
     public class FileUploadController : ApiController
     {
-        // GET: api/FileUpload
-        public IEnumerable<string> Get()
+        public async Task<HttpResponseMessage> PostFormData()
         {
-            return new string[] { "value1", "value2" };
-        }
+            // Check if the request contains multipart/form-data.
+            if (!Request.Content.IsMimeMultipartContent())
+            {
+                throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
+            }
 
-        // GET: api/FileUpload/5
-        public string Get(int id)
-        {
-            return "value";
-        }
+            string root = HttpContext.Current.Server.MapPath("~/App_Data");
+            var provider = new MultipartFormDataStreamProvider(root);
 
-        // POST: api/FileUpload
-        public void Post([FromBody]string value)
-        {
-        }
+            try
+            {
+                // Read the form data.
+                await Request.Content.ReadAsMultipartAsync(provider);
 
-        // PUT: api/FileUpload/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/FileUpload/5
-        public void Delete(int id)
-        {
+                // This illustrates how to get the file names.
+                foreach (MultipartFileData file in provider.FileData)
+                {
+                    Trace.WriteLine(file.Headers.ContentDisposition.FileName);
+                    Trace.WriteLine("Server file path: " + file.LocalFileName);
+                }
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (System.Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);
+            }
         }
     }
 }

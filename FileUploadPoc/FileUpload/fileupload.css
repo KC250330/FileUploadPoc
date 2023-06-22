@@ -35,7 +35,6 @@ select {
         "uploadButton uploadButton uploadButton uploadButton uploadButton";
 }
 
-/*  "fileUploadLabel fileUploadTextBox fileUploadTextBox fileUploadTextBox fileUploadButton" */
 .fileUploadLabel { grid-area: fileUploadLabel; }
 
 .fileUploadButton { grid-area: fileUploadButton; }
@@ -101,12 +100,16 @@ select {
   background-color:  rgb(144, 180, 240); 
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   gap: 2px 5px;
   grid-auto-flow: row;
   grid-template-areas:
+      "fileContentHeader . . . ."
       "filePanelLayout filePanelLayout filePanelLayout filePanelLayout filePanelDelete";
 }
 
+.fileContentHeader { grid-area: fileContentHeader; }
+.fileContentHeaderText { color: #000000;}
 .filePanelLayout { grid-area: filePanelLayout; }
 .filePanelDelete { 
   grid-area: filePanelDelete; 

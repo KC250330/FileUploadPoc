@@ -1,5 +1,5 @@
 ﻿'use strict';
-
+// $(function () {
 /**
  * Setup constants and variables.
  */
@@ -19,7 +19,7 @@ let dropArea = document.getElementById('dropArea');
 let fileInput = document.getElementById('fileInput');
 let addFileButton = document.getElementById('addFileButton');
 let uploadFile = document.getElementById('btnUploadFile');
-
+let selectedFile = new File([""], "filename");
 /**
  * Add event listeners 
  */
@@ -32,15 +32,16 @@ fileInput.addEventListener('change', handleFile, false);
 
 /**
  * Validates file name extension is valid based on codetype
+ * @param {File} file
  */
-function setFileInfo()
+function setFileInfo(file)
 {
     // get version
-    setVersion();
+    setVersion(file);
     // get file size
-    setFileSize();
+    setFileSize(file);
     // gen hash
-    setShaHash();
+    setShaHash(file);
 }
 
 /**
@@ -82,25 +83,25 @@ function validateFile(ctrlId)
 /**
  * Set the file size
  */
-function setFileSize() {
-    let file = getFile();
+function setFileSize(file) {
+    //let file = getFile();
     setElementValue('fileSize', convertSize(file.size));
 }
 
 /**
  * Gets the version based on the file name
  */
-async function setShaHash() {
+async function setShaHash(file) {
     
-    setElementValue('hash', await sha256(getFileContents()));
+    setElementValue('hash', await sha256(getFileContents(file)));
 }
 
 /**
  * Gets the version based on the file name
  */
-function setVersion() {
+function setVersion(file) {
     // need to parse out the version based on the old .net code
-    let version = getVersion();
+    let version = getVersion(file);
     setElementValue('version', version);
 }
 
@@ -127,8 +128,8 @@ const setElementValue = (id, value) => {
  * try and get the version from the uploaded file
  * @returns
  */
-function getVersion() {
-    let file = getFile();
+function getVersion(file) {
+    //let file = getFile();
     // get the file extension from the file name
     let fExt = getFileExtension(file.name);
 
@@ -140,7 +141,7 @@ function getVersion() {
     if (fExt === '.upd') {
 
         // check for LibmtxEps type
-        var version = checkLibmtxEps();
+        var version = checkLibmtxEps(file);
 
         // return the version 
         if (version)
@@ -181,8 +182,8 @@ function changeUploadButtonState(state) {
  * Check if file is named libmtx_eps.upd if so it will get the version from the EPSDLLVERSION in the file.
  * @returns
  */
-function checkLibmtxEps() {
-    let file = getFile();
+function checkLibmtxEps(file) {
+    //let file = getFile();
     // set initial position to 0
     let position = 0;
 
@@ -234,8 +235,8 @@ function getFileExtension(fileName) {
  * Get the content of a file
  * @returns
  */
-function getFileContents() {
-    let file = getFile();
+function getFileContents(file) {
+    // let file = getFile();
     // early out
     if (!file)
         return null;
@@ -513,9 +514,14 @@ function resetForm(){
 }
 
 /**
- * Fires when a file is dropped on the drag drop boc
+ * Fires when a file is dropped on the drag drop box
+ * @param {any} files
+ * @returns
  */
 function handleFiles(files) {
+
+    selectedFile = files[0];
+
     var file = files[0];
     var ext = getFileExtension(file.name);
 
@@ -526,7 +532,7 @@ function handleFiles(files) {
         return;
     }
 
-    setFileInfo();
+    setFileInfo(file);
     
     console.log('File:', file);
 
@@ -539,26 +545,28 @@ function handleFiles(files) {
 }
 
 /**
- * Returns a file object based on the fileinput textbox
+ * Returns a file object based on the file input textbox
  * @returns {File}
  */
 const getFile = (()=>
 {
     var file = fileInput.files[0];
     if(!file)
-        return new File();
+        return new File([""], "filename");
 
     return file;
 });
 
 /**
  * Fires when the add button is clicked and a file is selected
+ * @param {File} file
+ * @returns
  */
-function handleFile() {
+function handleFile(file) {
 
     var file = getFile();
 
-    setFileInfo();
+    setFileInfo(file);
 
     console.log('File:', file);
 
@@ -612,3 +620,4 @@ function postFile() {
         alert('Please select a file to upload.');
     }
 }
+//});
