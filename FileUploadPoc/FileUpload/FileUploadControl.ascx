@@ -20,14 +20,13 @@
             </div>
         </div>
         <!-- Version -->
-    <div class="versionContainer">
+<%--    <div class="versionContainer">--%>
     <label for="version" class="versionLabel">Version:</label>
         <input id="version" type="text" required 
             oninvalid="this.setCustomValidity('Version cannot be empty.')" 
             onchange="this.setCustomValidity('')" 
         class="versionTextBox small-input" />
-        
-    </div>
+<%--         </div>--%>
         <!-- FileSize -->
         <label for="fileSize" class="fileSizeLabel">File Size:</label>
         <input id="fileSize" required 
