@@ -26,16 +26,16 @@ namespace FileUploadPoc.FileUpload
         {
             if (!Page.IsPostBack)
             {
-                SetEnvironmentsList();
+                //SetEnvironmentsList();
                 SetCodeType();
             }
         }
 
-        private void SetEnvironmentsList()
-        {
-            string jsonArray = JsonConvert.SerializeObject(Environments);
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "setEnvironmentOptions", $"setEnvironmentOptions({jsonArray});", true);
-        }
+        //private void SetEnvironmentsList()
+        //{
+        //    string jsonArray = JsonConvert.SerializeObject(Environments);
+        //    Page.ClientScript.RegisterStartupScript(this.GetType(), "setEnvironmentOptions", $"setEnvironmentOptions({jsonArray});", true);
+        //}
 
         private void SetCodeType()
         {

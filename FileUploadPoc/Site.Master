@@ -18,7 +18,7 @@
 </head>
 <body>
     <form runat="server">
-        <asp:ScriptManager runat="server"  >
+        <asp:ScriptManager runat="server" EnablePartialRendering="true" >
             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
                 <%--Framework Scripts--%>
@@ -40,15 +40,23 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" runat="server" href="~/">FileUpload POC</a>
+                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                       <%-- <li class="nav-item"><a class="nav-link" runat="server" href="~/">Pure Javascript POC</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/AspWebForms">Asp Web Forms POC</a></li>
+                       <li class="nav-item"><a class="nav-link" runat="server" href="~/AspUploadPanels">Asp UploadPanels POC</a></li>--%>
+                        
+                    </ul>
+                </div>
             </div>
         </nav>
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
-            <hr />
+            <%--<hr />
             <footer>
                 <p>&copy; <%: DateTime.Now.Year %> - FileUpload POC</p>
-            </footer>
+            </footer>--%>
         </div>
     </form>
     <asp:PlaceHolder runat="server">

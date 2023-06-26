@@ -46,6 +46,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Swashbuckle.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cd1bb07a5ac7c7bc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Swashbuckle.Core.5.6.0\lib\net40\Swashbuckle.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -91,6 +94,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -134,11 +140,11 @@
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
-    <Content Include="FileUpload\FileUploadPoc.ascx" />
-    <Content Include="FileUpload\FileUpload.asmx" />
-    <Content Include="FileUpload\fileupload.js" />
+    <Content Include="FileUpload\javascript\fileupload - Copy.js" />
+    <Content Include="FileUpload\javascript\fileupload.js" />
     <Content Include="FileUpload\FileUploadControl.ascx" />
-    <Content Include="FileUpload\fileupload.css" />
+    <Content Include="FileUpload\javascript\fileUploadLte.js" />
+    <Content Include="FileUpload\styles\fileupload.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -168,7 +174,6 @@
     <Content Include="Content\bootstrap-grid.rtl.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
-    <Content Include="FileUpload\FileUploadHandler.ashx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -212,6 +217,7 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
@@ -227,17 +233,6 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FileUpload\FileUploadPoc.ascx.cs">
-      <DependentUpon>FileUploadPoc.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="FileUpload\FileUploadPoc.ascx.designer.cs">
-      <DependentUpon>FileUploadPoc.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="FileUpload\FileUpload.asmx.cs">
-      <DependentUpon>FileUpload.asmx</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="FileUpload\FileUploadControl.ascx.cs">
       <DependentUpon>FileUploadControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -245,10 +240,12 @@
     <Compile Include="FileUpload\FileUploadControl.ascx.designer.cs">
       <DependentUpon>FileUploadControl.ascx</DependentUpon>
     </Compile>
-    <Compile Include="FileUpload\FileUploadController.cs" />
-    <Compile Include="FileUpload\FileUploadHandler.ashx.cs">
-      <DependentUpon>FileUploadHandler.ashx</DependentUpon>
-    </Compile>
+    <Compile Include="FileUpload\Api\FileUploadController.cs" />
+    <Compile Include="FileUpload\Models\FileUploadInfo.cs" />
+    <Compile Include="FileUpload\Models\FileUploadResponse.cs" />
+    <Compile Include="FileUpload\Models\FileVersionInfo.cs" />
+    <Compile Include="FileUpload\Models\PEFile.cs" />
+    <Compile Include="FileUpload\Models\PEResource.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
