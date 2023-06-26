@@ -77,10 +77,9 @@ function handleFile(file) {
  * Enable and Disable the file upload button
  * @param {boolean} flag 
  */
-function toggleUploadFileButton(flag) {
+const toggleUploadFileButton = (flag) => {
     uploadFile.disabled = !flag;
-}
-
+};
 
 // -- Drag and Drop
 
@@ -163,7 +162,7 @@ function handleFiles(files) {
     selectedFile = files[0];
 
     var file = files[0];
-    var ext = `.${getFileExtension(file.name) }`;
+    var ext = getFileExtension(file.name);
 
     var isValidFileExtension = validateFileExtension(ext, fileType);
 
@@ -192,73 +191,74 @@ function handleFiles(files) {
 /**
  * clear the files form the form and reset the form
  */
-function clearFile() {
+const clearFile = () => {
 
     uploadForm.reset();
-}
+};
 
 /**
  * Reset the form
  */
-function resetForm() {
+const resetForm = () => {
     setFileName('?');
     hideElement('filePanel');
     showElement('dropArea');
     toggleUploadFileButton(false);
-}
+};
+
 // ------------------- Form Events End ---------------------------
 
 // ------------------- General Events Begin -------------------
 /**
  *  Hide authenticated and for company number fields
  */
-function hideCodeFileFields() {
+const hideCodeFileFields = () => {
     hideElement('lblForCompanyNumber');
     hideElement('forCompanyNumber');
     hideElement('lblAuthenticated');
     hideElement('authenticated');
-}
+};
 
 /**
  * Hide an element by id
  * @param {string} ctrlId
  */
-function hideElement(ctrlId) {
+const hideElement = (ctrlId) => {
     var element = document.getElementById(ctrlId);
     element.classList.remove('show');
     element.classList.add('hide');
-}
+};
 
 /**
  * Show an element by id
  * @param {string} ctrlId
  */
-function showElement(ctrlId) {
+const showElement = (ctrlId) => {
     var element = document.getElementById(ctrlId);
     element.classList.remove('hide');
     element.classList.add('show');
-}
+};
 
 /**
  * Updates the file upload textbox with the client local file path
  * @param {string} oFileInput
  * @param {string} sTargetID
  */
-function changeText(oFileInput, sTargetID) {
+const changeText = (oFileInput, sTargetID) => {
     document.getElementById(sTargetID).value = oFileInput.value;
-}
+};
 
 /**
  * Convert file size to readable format
  * @param {number} size
  * @returns
  */
-function convertSize(size) {
+const convertSize = (size) => {
     var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
     if (size == 0) return '0 Byte';
     var i = parseInt(Math.floor(Math.log(size) / Math.log(1024)));
     return Math.round(size / Math.pow(1024, i), 2) + ' ' + sizes[i];
-}
+};
 
 /**
  * Check that the file extension is allow by type
@@ -266,7 +266,7 @@ function convertSize(size) {
  * @param {string} fileType
  * @returns
  */
-function validateFileExtension(fileExtension, fileType) {
+const validateFileExtension = (fileExtension, fileType) => {
     let filter = '';
     switch (fileType) {
         case CODE_FILE:
@@ -282,13 +282,13 @@ function validateFileExtension(fileExtension, fileType) {
         return false;
 
     return true;
-}
+};
 
 /**
  * Sets the file upload inputs accept file types attribute
  * @param {string} fType
  */
-function setCodeType(fType) {
+const setCodeType = (fType) => {
 
     // early out
     if (!fileInput)
@@ -319,15 +319,15 @@ function setCodeType(fType) {
             }
             break;
     }
-}
+};
 
 /**
  * Set the file size
  */
-const setFileSize = function(file) {
+const setFileSize = (file) => {
     //let file = getFile();
     fileSize.textContent = convertSize(file.size);
-}
+};
 
 /**
  * Sets the value for an input type text
@@ -347,29 +347,23 @@ const setElementValue = (id, value) => {
     //set the value
     ctrl.value = value;
 };
+
 /**
  * Sets the filename in the file Panel
  * @param {string} fileName 
  */
-function setFileName(fileName) {
+const setFileName = (fileName) => {
     filePanelLayout.innerHTML = fileName;
-}
+};
+
 /**
  * Get the file extension based on the file name
  * @param {string} fileName
  * @returns
  */
-function getFileExtension(fileName) {
-    return fileName.split('.').pop();
-
-    // let extension = '';
-
-    // var lastDotIndex = fileName.lastIndexOf('.');
-    // if (lastDotIndex !== -1) {
-    //     extension = fileName.substring(lastDotIndex);
-    // }
-    // return extension;
-}
+const getFileExtension = (fileName) => {
+    return `.${fileName.split('.').pop()}`;
+};
 
 
 // ------------------- General Events End -------------------
