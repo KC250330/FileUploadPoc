@@ -140,10 +140,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
-    <Content Include="FileUpload\javascript\fileupload - Copy.js" />
     <Content Include="FileUpload\javascript\fileupload.js" />
     <Content Include="FileUpload\FileUploadControl.ascx" />
-    <Content Include="FileUpload\javascript\fileUploadLte.js" />
     <Content Include="FileUpload\styles\fileupload.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.bundle.js" />

@@ -58,8 +58,6 @@ function handleFile(file) {
 
     var file = getFile();
 
-    //setFileInfo(file);
-
     console.log('File:', file);
 
     setFileName(file.name);
@@ -452,29 +450,41 @@ const validateData = ((file) => {
     }
 });
 
+/**
+ * Show the progress bar
+ */
 const showProgress = (() => {   
     progressContainer.style.display = 'block';   
 });
 
+/**
+ * Hide the progress bar
+ */
 const hideProgress = (() =>{   
     progressContainer.style.display = 'none';   
 });
 
+/**
+ * Show the file info panel
+ */
 const showFileInfoPanel = (() => {   
     fileInfoPanel.style.display = 'block';  
 });
 
+/**
+ * Hide the file info panel
+ */
 const hideFileInfoPanel = (() => {   
     fileInfoPanel.style.display = 'none';   
 });
 
 
-//todo implement this call.
+//todo implement this call, and add jsdoc
 function saveFile() {
     alert('saving fileId:' + fileId);
 };
 
-//todo implement this call.
+//todo implement this call, and add jsdoc
 function cleanUpFile() {
 
 };
