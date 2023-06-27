@@ -180,7 +180,7 @@ function handleFiles(files) {
 
     toggleUploadFileButton(true);
     validateData(file);
-    return;
+    //return;
 }
 
 // ------------------- Drag Drop & Browse Button End ---------------------------
@@ -417,7 +417,7 @@ const validateData = ((file) => {
 
         const xhr = new XMLHttpRequest();
         xhr.responseType = 'json';
-        xhr.open('POST', '/api/fileupload/validate', true);
+        xhr.open('POST', '/api/fileupload/upload', true);
         xhr.addEventListener('load', function(e) {
             hideProgress();
             console.log('status: ' + xhr.status);

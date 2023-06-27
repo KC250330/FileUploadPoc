@@ -29,7 +29,7 @@ select {
     grid-template-areas:
         "fileUploadTextBox fileUploadTextBox fileUploadTextBox fileUploadTextBox fileUploadTextBox";
 }
-/*"companyNumberLabel companyNumberTextBox authenticatedLabel authenticationDropDown .";*/
+
 .fileUploadLabel { grid-area: fileUploadLabel; }
 
 .fileUploadButton { grid-area: fileUploadButton; }
